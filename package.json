@@ -6,7 +6,8 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "lint": "tsc --noEmit"
   },
   "dependencies": {
     "@astrojs/react": "^4.3.1",
@@ -16,5 +17,8 @@
     "astro": "^5.13.7",
     "react": "^19.1.1",
     "react-dom": "^19.1.1"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3"
   }
 }
