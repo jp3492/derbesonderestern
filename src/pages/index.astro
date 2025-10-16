@@ -1,4 +1,64 @@
 ---
-// src/pages/index.astro
-return Astro.redirect('/de/');
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Gallery from '../components/Gallery.astro';
+import de from '../i18n/de.json';
+import '../styles/global.css';
+import '@fontsource/crimson-text';
+
+const lang = 'de';
+const t = de;
 ---
+
+<html lang={lang}>
+<head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{t.title}</title>
+    <meta name="description" content={t.description} />
+</head>
+<body>
+    <!-- <Header /> -->
+    <main>
+        <section class="hero" aria-label="Temporary cover">
+            <div class="hero__content">
+                <h1 class="hero__title">Der Besondere Stern</h1>
+                <p class="hero__subtitle">Webseite bald da</p>
+            </div>
+        </section>
+        <!-- <section id="home">
+            <div class="container">
+                <h1>{t.title}</h1>
+                <p>{t.description}</p>
+            </div>
+        </section>
+        <section id="about">
+            <div class="container">
+                <h2>{t.section_about_title}</h2>
+                <p>{t.section_about_text}</p>
+            </div>
+        </section>
+        <section id="special-star">
+            <div class="container">
+                <h2>{t.section_special_star_title}</h2>
+                <p>{t.section_special_star_text}</p>
+            </div>
+        </section>
+        <section id="gallery">
+            <div class="container">
+                <h2>{t.section_gallery_title}</h2>
+                <Gallery />
+            </div>
+        </section>
+        <section id="contact">
+            <div class="container">
+                <h2>{t.section_contact_title}</h2>
+                <p>{t.section_contact_text}</p>
+            </div>
+        </section>
+        <Footer /> -->
+    </main>
+</body>
+</html>
