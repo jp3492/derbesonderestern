@@ -1,0 +1,16 @@
+{
+  "title": "Ein Besondere Stern",
+  "description": "Eine Ausstellung von wunderschönem Weihnachtsorigami, gemacht von meiner Mama.",
+  "nav_home": "Start",
+  "nav_about": "Über Mich",
+  "nav_special_star": "Ein Besondere Stern",
+  "nav_gallery": "Galerie",
+  "nav_contact": "Kontakt",
+  "section_about_title": "Über Mich",
+  "section_about_text": "Platzhaltertext über mich...",
+  "section_special_star_title": "Ein Besondere Stern",
+  "section_special_star_text": "Platzhaltertext über den besonderen Stern...",
+  "section_gallery_title": "Galerie",
+  "section_contact_title": "Kontakt",
+  "section_contact_text": "Platzhaltertext für Kontaktinformationen..."
+}

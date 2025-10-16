@@ -1,0 +1,146 @@
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  /* font-family: sans-serif; */
+  margin: 0;
+  background-color: #f0f0f0;
+  font-family: "Crimson Text", serif;
+  font-size: 18px;
+  line-height: 1.6;
+  overflow: hidden; /* Hide body scrollbar */
+}
+
+main {
+  height: 100vh;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+}
+
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+p,
+em {
+  font-style: italic;
+  margin-bottom: 1rem;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* Apply italic to other text elements */
+li,
+blockquote,
+figcaption,
+label,
+small,
+span {
+  font-style: italic;
+}
+
+section {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2rem 0;
+  border-bottom: 1px solid #ccc;
+  box-sizing: border-box;
+  scroll-snap-align: start;
+}
+
+section:last-of-type {
+  border-bottom: none;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+.gallery img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Keep headings non-italic */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-style: normal;
+  margin: 0;
+}
+
+/* Home section background */
+#home {
+  background-image: url("https://picsum.photos/1920/1080");
+  background-size: cover;
+  background-position: center;
+}
+
+#home .container {
+  text-align: center;
+}
+
+#home h1,
+#home p {
+  color: white;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+}
+
+/* Temporary full-viewport hero cover */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url("/images/title.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  scroll-snap-align: start;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  /* Light filter to gently fade the image */
+  background: rgba(255, 255, 255, 0.35);
+}
+
+.hero__content {
+  position: relative; /* sit above overlay */
+  text-align: center;
+  color: #111;
+  background: rgba(255, 255, 255, 0.92);
+  padding: 1.5rem 2rem;
+  border-radius: 12px;
+  /* solid contrasting box shadow for readability */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45),
+    0 0 0 2px rgba(0, 0, 0, 0.65) inset;
+}
+
+.hero__title {
+  font-size: clamp(2rem, 5vw, 4rem);
+  margin: 0 0 0.5rem 0;
+}
+
+.hero__subtitle {
+  font-size: clamp(1rem, 2.5vw, 1.5rem);
+  margin: 0;
+}

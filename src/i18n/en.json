@@ -1,0 +1,16 @@
+{
+  "title": "A Special Star",
+  "description": "A showcase of beautiful Christmas origami made by my mom.",
+  "nav_home": "Home",
+  "nav_about": "About Me",
+  "nav_special_star": "A Special Star",
+  "nav_gallery": "Gallery",
+  "nav_contact": "Contact",
+  "section_about_title": "About Me",
+  "section_about_text": "Placeholder text about me...",
+  "section_special_star_title": "A Special Star",
+  "section_special_star_text": "Placeholder text about the special star...",
+  "section_gallery_title": "Gallery",
+  "section_contact_title": "Contact",
+  "section_contact_text": "Placeholder text for contact information..."
+}

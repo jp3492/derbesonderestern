@@ -1,0 +1,53 @@
+---
+const locale = Astro.currentLocale;
+import en from '../i18n/en.json';
+import de from '../i18n/de.json';
+const t = locale === 'de' ? de : en;
+---
+<header>
+  <h1>
+    <a href="/">{t.title}</a>
+  </h1>
+  <nav>
+    <div class="nav-links">
+      <a href="#home">{t.nav_home}</a>
+      <a href="#about">{t.nav_about}</a>
+      <a href="#special-star">{t.nav_special_star}</a>
+      <a href="#gallery">{t.nav_gallery}</a>
+      <a href="#contact">{t.nav_contact}</a>
+    </div>
+    <div class="lang-switch">
+      <a href="/en/">En</a>
+      <a href="/">De</a>
+    </div>
+  </nav>
+</header>
+
+<style>
+  header {
+    color: white;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    display: grid;
+    grid-template-columns: 1fr max-content;
+    align-items: center;
+  }
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  nav a {
+    color: white;
+    margin-right: 1rem;
+    text-decoration: none;
+  }
+  nav a:hover {
+    text-decoration: underline;
+  }
+  .lang-switch a {
+    margin-left: 1rem;
+    margin-right: 0;
+  }
+</style>
