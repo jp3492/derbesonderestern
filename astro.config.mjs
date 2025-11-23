@@ -1,5 +1,5 @@
 // @ts-check
-import { defineConfig } from "astro/config";
+import { defineConfig, passthroughImageService } from "astro/config";
 import react from "@astrojs/react";
 
 // https://astro.build/config
@@ -10,8 +10,6 @@ export default defineConfig({
     locales: ["en", "de"],
   },
   image: {
-    service: {
-      entrypoint: "astro/assets/services/passthrough",
-    },
+    service: passthroughImageService(),
   },
 });
