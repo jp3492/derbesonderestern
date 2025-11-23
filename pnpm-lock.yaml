@@ -11,6 +11,9 @@ dependencies:
   '@fontsource/crimson-text':
     specifier: ^5.2.6
     version: 5.2.7
+  '@fontsource/inter':
+    specifier: ^5.2.8
+    version: 5.2.8
   '@types/react':
     specifier: ^19.1.13
     version: 19.2.2
@@ -550,6 +553,10 @@ packages:
 
   /@fontsource/crimson-text@5.2.7:
     resolution: {integrity: sha512-hlUb/1GdXB2xc0usGMPp6qEI7Z4kQU1FEOYvozsN+cUC/Nh4kvEVVc0kHpj8B5G0hjZzfP+UmrLYHOaNAfMK5w==}
+    dev: false
+
+  /@fontsource/inter@5.2.8:
+    resolution: {integrity: sha512-P6r5WnJoKiNVV+zvW2xM13gNdFhAEpQ9dQJHt3naLvfg+LkF2ldgSLiF4T41lf1SQCM9QmkqPTn4TH568IRagg==}
     dev: false
 
   /@img/colour@1.0.0:

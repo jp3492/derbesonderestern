@@ -1,0 +1,368 @@
+---
+import Header from './Header.astro';
+import Footer from './Footer.astro';
+import Gallery from './Gallery.astro';
+import heroImage from '../assets/title.jpg';
+
+interface Props {
+  lang: string;
+  t: Record<string, string>;
+}
+
+const { lang, t } = Astro.props;
+---
+
+<html lang={lang}>
+<head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{t.title}</title>
+    <meta name="description" content={t.description} />
+</head>
+<body>
+    <Header />
+    <main>
+        <section id="home" class="hero" aria-label="Landing" style={`--hero-image: url(${heroImage.src});`}>
+            <div class="hero__content">
+                <h1 class="hero__title">{t.hero_title}</h1>
+                <p class="hero__subtitle">{t.hero_subtitle}</p>
+                <div class="hero__cta">
+                    <a href="#gallery" class="btn btn--primary">{t.hero_cta_gallery}</a>
+                    <a href="#contact" class="btn btn--ghost">{t.hero_cta_contact}</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="about">
+            <div class="container">
+                <div class="split">
+                    <div class="about-content">
+                        <h2>{t.section_about_title}</h2>
+                        <p>{t.section_about_text_1}</p>
+                        <p>{t.section_about_text_2}</p>
+                    </div>
+                    <div class="about-card">
+                        <div class="about-card__media" role="img" aria-label="Origami Stern Vorschau"></div>
+                        <div class="about-card__text">
+                            <p>{t.about_card_text}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="sizes">
+            <div class="container">
+                <div class="section-header">
+                    <h2>{t.section_sizes_title}</h2>
+                    <p>{t.section_sizes_subtitle}</p>
+                </div>
+                
+                <div class="sizes-grid">
+                    {[1, 2, 3, 4, 5, 6, 7, 8].map((num) => (
+                        <div class="size-card card">
+                            <div class="size-card__header">
+                                <span class="size-number">{num}</span>
+                                <h3 class="size-label">{t[`size_label_${num}`]}</h3>
+                            </div>
+                            <p class="size-description">{t[`size_desc_${num}`]}</p>
+                            <div class="size-visual" style={`--scale: ${0.4 + (num * 0.08)}`}>
+                                <div class="star-icon">★</div>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </section>
+
+        <section id="patterns" class="section-alt">
+            <div class="container">
+                <div class="section-header">
+                    <h2>{t.section_patterns_title}</h2>
+                    <p>{t.section_patterns_subtitle}</p>
+                </div>
+                <div class="patterns-grid">
+                    {[1, 2, 3, 4, 5, 6, 7, 8].map((num) => (
+                        <div class="pattern-card card">
+                            <div class={`pattern-preview pattern-${num}`}></div>
+                            <div class="pattern-info">
+                                <h3>{t[`pattern_name_${num}`]}</h3>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </section>
+
+        <section id="gallery" class="section-alt">
+            <div class="container">
+                <div class="section-header">
+                    <h2>{t.section_gallery_title}</h2>
+                    <p>{t.section_gallery_subtitle}</p>
+                </div>
+                <Gallery />
+            </div>
+        </section>
+
+        <section id="contact">
+            <div class="container">
+                <div class="section-header">
+                    <h2>{t.section_contact_title}</h2>
+                </div>
+                <div class="split">
+                    <form id="contact-form" class="card" aria-label="Kontaktformular">
+                        <div class="form-row">
+                            <label for="name">{t.form_label_name}</label>
+                            <input id="name" name="name" type="text" required placeholder={t.form_placeholder_name} />
+                        </div>
+                        <div class="form-row">
+                            <label for="email">{t.form_label_email}</label>
+                            <input id="email" name="email" type="email" required placeholder={t.form_placeholder_email} />
+                        </div>
+                        <div class="form-row">
+                            <label for="message">{t.form_label_message}</label>
+                            <textarea id="message" name="message" rows="6" required placeholder={t.form_placeholder_message}></textarea>
+                        </div>
+                        <button type="submit" class="btn btn--primary" style="width: 100%">{t.form_submit}</button>
+                        <p id="form-note" class="form-note">{t.form_note}</p>
+                    </form>
+                    <div class="contact-info">
+                        <div class="card info">
+                            <h3>{t.contact_info_title}</h3>
+                            <p>{t.contact_info_text}</p>
+                            
+                            <div class="contact-item">
+                                <strong>{t.contact_label_email}</strong>
+                                <a href="mailto:kontakt@ein-besonderer-stern.de">kontakt@ein-besonderer-stern.de</a>
+                            </div>
+                            
+                            <div class="contact-item">
+                                <strong>{t.contact_label_instagram}</strong>
+                                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">@ein.besonderer.stern</a>
+                            </div>
+                            
+                            <div class="note-box">
+                                <p><strong>{t.contact_note_label}</strong> {t.contact_note_text}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <Footer />
+    </main>
+
+    <style>
+        .section-alt {
+            background-color: var(--color-surface);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .about-card {
+            display: grid;
+            grid-template-rows: 200px auto;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            background: #fff;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--color-border);
+        }
+
+        .about-card__media {
+            background: radial-gradient(
+                60% 60% at 50% 40%,
+                rgba(255, 255, 255, 0.1) 0%,
+                rgba(0, 0, 0, 0.1) 100%
+                ),
+                url("/images/title.jpg") center/cover no-repeat;
+        }
+
+        .about-card__text {
+            padding: 1.5rem;
+            text-align: center;
+            font-style: italic;
+            color: var(--color-text-light);
+        }
+
+        .contact-item {
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-item strong {
+            display: block;
+            color: var(--color-primary);
+            margin-bottom: 0.25rem;
+        }
+
+        .contact-item a {
+            color: var(--color-accent);
+            font-weight: 500;
+        }
+
+        .note-box {
+            margin-top: 2rem;
+            padding: 1rem;
+            background: var(--color-bg);
+            border-radius: var(--radius-sm);
+            font-size: 0.9rem;
+        }
+
+        /* Sizes Section */
+        .sizes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .size-card {
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .size-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .size-card__header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .size-number {
+            background: var(--color-primary);
+            color: white;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 1rem;
+            flex-shrink: 0;
+            font-size: 1.1rem;
+        }
+
+        .size-label {
+            font-size: 1.1rem;
+            margin: 0;
+            color: var(--color-text);
+        }
+
+        .size-description {
+            color: var(--color-text-light);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .size-visual {
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--color-bg);
+            border-radius: var(--radius-sm);
+            margin-top: auto;
+        }
+
+        .star-icon {
+            font-size: 3rem;
+            line-height: 1;
+            color: var(--color-accent);
+            transform: scale(var(--scale));
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        /* Patterns Section */
+        .patterns-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .pattern-card {
+            padding: 0;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .pattern-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .pattern-preview {
+            height: 180px;
+            width: 100%;
+            background-color: #eee;
+        }
+
+        .pattern-info {
+            padding: 1rem;
+            text-align: center;
+            background: white;
+        }
+
+        .pattern-info h3 {
+            margin: 0;
+            font-size: 1.1rem;
+            color: var(--color-text);
+        }
+
+        /* Pattern Styles */
+        .pattern-1 { background: linear-gradient(135deg, #d32f2f, #b71c1c); } /* Classic Red */
+        .pattern-2 { background: linear-gradient(135deg, #1976d2, #0d47a1); } /* Winter Blue */
+        .pattern-3 { background: linear-gradient(135deg, #fbc02d, #f57f17); } /* Golden Glow */
+        .pattern-4 { background: linear-gradient(135deg, #e0e0e0, #9e9e9e); } /* Silver Sparkle */
+        .pattern-5 { background: linear-gradient(135deg, #388e3c, #1b5e20); } /* Forest Green */
+        .pattern-6 { background: linear-gradient(135deg, #311b92, #000051); } /* Midnight Star */
+        .pattern-7 { 
+            background: repeating-linear-gradient(
+                45deg,
+                #d32f2f,
+                #d32f2f 10px,
+                #ffffff 10px,
+                #ffffff 20px
+            ); 
+        } /* Candy Cane */
+        .pattern-8 { background: linear-gradient(135deg, #7b1fa2, #4a148c); } /* Royal Purple */
+
+        @media (max-width: 768px) {
+            .sizes-grid {
+                grid-template-columns: 1fr;
+            }
+            .patterns-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+        }
+    </style>
+
+    <script is:inline>
+        const form = document.getElementById('contact-form');
+        if (form) {
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const nameInput = document.getElementById('name');
+                const emailInput = document.getElementById('email');
+                const messageInput = document.getElementById('message');
+                const name = nameInput && 'value' in nameInput ? String(nameInput.value).trim() : '';
+                const email = emailInput && 'value' in emailInput ? String(emailInput.value).trim() : '';
+                const message = messageInput && 'value' in messageInput ? String(messageInput.value).trim() : '';
+                const subject = encodeURIComponent('Anfrage – Ein besonderer Stern');
+                const body = encodeURIComponent(`Name: ${name}\nE-Mail: ${email}\n\nNachricht:\n${message}`);
+                window.location.href = `mailto:kontakt@ein-besonderer-stern.de?subject=${subject}&body=${body}`;
+            });
+        }
+    </script>
+</body>
+</html>

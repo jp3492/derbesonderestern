@@ -1,22 +1,27 @@
 ---
 import { Image } from 'astro:assets';
 
-// Import all images from the assets folder
-const images = await import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg,jpg,png,gif}');
-const imagePaths = Object.values(images);
+// Import all images from the assets folder (eager so we get modules, not loader functions)
+const imageModules = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg,jpg,png,gif}', { eager: true });
+const imagePaths = Object.values(imageModules);
 ---
 
 <div class="gallery">
   {imagePaths.length > 0 ? (
     imagePaths.map((image) => (
-      <Image
-        src={image.default}
-        widths={[400, 800, 1200]}
-        sizes="(max-width: 600px) 90vw, (max-width: 960px) 45vw, 300px"
-        alt="An origami creation."
-        loading="lazy"
-        decoding="async"
-      />
+      <div class="gallery-item">
+        <Image
+          src={image.default}
+          widths={[400, 800, 1200]}
+          sizes="(max-width: 600px) 90vw, (max-width: 960px) 45vw, 300px"
+          alt="An origami creation."
+          loading="lazy"
+          decoding="async"
+        />
+        <div class="overlay">
+          <span>View</span>
+        </div>
+      </div>
     ))
   ) : (
     <p>Your images will appear here. Just drop them into the <code>/src/assets</code> folder.</p>
@@ -24,15 +29,73 @@ const imagePaths = Object.values(images);
 </div>
 
 <style>
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+
+  @media (max-width: 640px) {
+    .gallery {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+  }
+
+  .gallery-item {
+    position: relative;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    transition: all 0.3s ease;
+    aspect-ratio: 1;
+  }
+
+  .gallery-item:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+  }
+
   .gallery :global(img) {
     width: 100%;
-    height: auto;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
   }
+
+  .gallery-item:hover :global(img) {
+    transform: scale(1.05);
+  }
+
+  .overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .gallery-item:hover .overlay {
+    opacity: 1;
+  }
+
+  .overlay span {
+    color: white;
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+    border: 1px solid white;
+    border-radius: 999px;
+    backdrop-filter: blur(4px);
+  }
+
   p {
     font-style: italic;
     text-align: center;
-    grid-column: 1 / -1; /* Span all columns if gallery is empty */
+    grid-column: 1 / -1;
+    color: var(--color-text-light);
   }
 </style>
